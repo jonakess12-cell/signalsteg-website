@@ -1,0 +1,186 @@
+{
+  "stand": "22.11.2026",
+  "naechsteSitzung": "Mittwoch, 2.12.2026",
+  "firma": {
+    "name": "Signalsteg Messtechnik GmbH",
+    "kurz": "Wir entwickeln und vertreiben Messaufbauten für Gebäudebetrieb und technische Dienstleistungen. Im Haus am Bogenfeld zeigen wir Messmethoden, vergleichen Geräte und bereiten Kundenversuche vor.",
+    "fakten": [
+      ["Sitz", "Bogenfeld 12, 70565 Stuttgart-Vaihingen"],
+      ["Rechtsform", "GmbH, HRB 727160 (AG Stuttgart), seit 2007"],
+      ["Stammkapital", "250.000 €"],
+      ["Beschäftigte", "54 (36 am Bogenfeld, 18 Geräteentwicklung Nord)"],
+      ["Fläche im Haus", "1. OG Büro West, 659,28 m², seit 01.01.2020"],
+      ["Betriebszeiten", "Mo–Fr 07:00–19:00"],
+      ["Gesellschafter", "Gabriele Ulbricht 34 %, Volker Sachs 33 %, Petra Hasse 33 %"]
+    ],
+    "angebot": [
+      "Plausibilitätsprüfung von Zählerdaten und Ablesungen",
+      "Messplan und eigene Messung, z. B. Raumklima über mehrere Tage",
+      "Gerätevergleich und Beratung zur Messtechnik",
+      "Vorführung einer Messung mit Erläuterung der Grenzen"
+    ],
+    "nichtAngebot": [
+      "keine Eichung",
+      "keine akkreditierte Kalibrierung",
+      "kein Messstellenbetrieb, keine Verbrauchsabrechnung",
+      "kein Prüfbericht zum Anlagenzustand ohne Auftrag und Nachweis"
+    ],
+    "saetze": "Verrechnungssätze 2026 netto/h: Beratung 96 € · Messeinsatz mit eigenem Gerät 124 € · Auswertung und Bericht 96 € · Vorführung bis 2 h kostenlos",
+    "mietvertrag": [
+      ["Vertrag", "MV 02/2019 vom 18.10.2019 (Datenraum 03.04.018)"],
+      ["Vermieterin", "Kantbogen Bestand GmbH, vertreten durch Raumlot"],
+      ["Laufzeit", "ab 01.01.2020, 10 Jahre fest, Option 1 × 5 Jahre"],
+      ["Miete zu Beginn", "5.902,28 € netto/Monat (8,95 €/m²)"],
+      ["Betriebskosten", "3.319,54 €/Monat Vorauszahlung"],
+      ["Wertsicherung", "VPI, Anpassung erst ab mehr als 10 % Veränderung"],
+      ["Umsatzsteuer", "Vermieterin optiert, Satz folgt dem Gesetz"]
+    ],
+    "streit": [
+      ["Option", "Marco muss bis 30.11. antworten, Volker Sachs will die Option als Verhandlungsmasse."],
+      ["Raumtemperatur", "Die Geschäftsführung will die Hitzebeschwerden nutzen – die Zahl von 2020 prüft Ute gerade."],
+      ["Befunde als Werbung", "Konrad will zeigen, was wir finden; Petra will nichts nach außen vor der Korrekturmeldung."],
+      ["Eigene Daten", "Ismails Loggerdaten stützen die Beschwerde und werfen Fragen zum eigenen Serverraum auf."],
+      ["Messen ohne Nachweis", "Konrad will im Forum schnell messen, die Logger sind nicht kalibriert; Ute legt fest, was zugesagt wird."],
+      ["Reklamation", "Ute will den Beleg für die Nachmessung 2025 von Torwinkel, Ismail und Marco zögern."],
+      ["Eichfristen", "Viele Wärmezähler ohne gültige Eichung; Petra entscheidet, wie deutlich das an Thermenfeld geht."],
+      ["Frist 20.08.", "Ute will die Frist mit Datum aufschreiben, Marco will vor der Option keinen Streit."],
+      ["Kalibrierung", "Ute will die Logger kalibrieren lassen, Marco gibt frei und achtet auf Kosten."]
+    ]
+  },
+  "partner": [
+    {"firma": "Raumlot Objektmanagement GmbH", "rolle": "Property Manager, unser häufigster Kontakt (177 Nachrichten)", "personen": "Svenja Riedel (stellv. Objektbetreuung), Jonas Heller (kaufm. PM-Leitung), Farid Mertens (Techn. PM), Judith Ahlers (Mietadministration), Uwe Pohl (GF)"},
+    {"firma": "Kantbogen Bestand GmbH", "rolle": "Eigentümerin und Vermieterin des Hauses", "personen": "über Raumlot"},
+    {"firma": "Torwinkel Gebäudeservice GmbH", "rolle": "FM-Dienstleisterin: Haustechnik, Tickets, Messberichte", "personen": "Rainer Jungmann (GF), Ben Hecht (Servicekoordination), Nora Wendel (Objektleitung), Jannik Vogler (Haustechniker seit 16.11.)"},
+    {"firma": "Thermenfeld Wärme und Wasser GmbH", "rolle": "Sanitär, Wärmezähler; möglicher Kunde Forum", "personen": "Detlef Brede (GF), Hanno Schenk (Serviceleitung)"},
+    {"firma": "Luftpfad Anlagentechnik GmbH", "rolle": "Wartung Lüftung; möglicher Kunde Forum", "personen": "Henrike Baum (Techn. GF), Elena Voss (Automation)"},
+    {"firma": "Werkraum Projektbüros GmbH", "rolle": "Mieterin OG4/OG5, mögliche Verbündete bei den Mieten", "personen": "Anna Schramm (GF), Patrick Fehr (Verträge)"},
+    {"firma": "Bauteilbogen Vertrieb GmbH", "rolle": "Mieterin OG3 Ost, fragt nach ihrem Stromzähler (spielt keine Gruppe)", "personen": "Berit Fuchs (Regionalleitung) – über Spielleitung"},
+    {"firma": "Feldkreis Service GmbH", "rolle": "Mieterin OG1 Ost, Partner bei Geräte-Rückläufern (spielt keine Gruppe)", "personen": "über Spielleitung"},
+    {"firma": "Achsenraum Ingenieurgesellschaft mbH", "rolle": "Partner bei der Interpretation von Betriebsdaten", "personen": "–"},
+    {"firma": "Spielleitung / Dozent", "rolle": "Fragen, Skript, nicht gespielte Firmen und Gesellschafter", "personen": "Kurschat Objektwelt; Berit Fuchs und Volker Sachs per persönlicher Nachricht"}
+  ],
+  "gemeinsam": {
+    "aufgaben": [
+      {"id": "g-antritt", "titel": "Antrittsvorstellung gehalten", "info": "Sitzung 19.11.2026", "status": "erledigt"},
+      {"id": "g-folien", "titel": "Folien als PDF in 91_Abgabe ablegen bzw. prüfen", "info": "2026-11-19_Antrittsvorstellung_Signalsteg.pdf – laut 00_Bis_zum_2_12 nachlegen, falls sie fehlen", "wer": "petra", "status": "offen"},
+      {"id": "g-start", "titel": "Arbeitsplatz: START-Datei", "info": "Gemeinsamer Ordner mit START – Entwurf nach Vorlage", "wer": "konrad", "entwurf": "start.md", "status": "pruefen"},
+      {"id": "g-anweisung", "titel": "Arbeitsplatz: Projektanweisung Signalsteg", "info": "Gemeinsamer Teil für alle KI-Projekte", "wer": "marco", "entwurf": "projektanweisung_signalsteg.md", "status": "pruefen"},
+      {"id": "g-gedaechtnis", "titel": "Arbeitsplatz: Gedächtnis der Gruppe", "info": "Stand und Entscheidungen", "wer": "ute", "entwurf": "gedaechtnis.md", "status": "pruefen"},
+      {"id": "g-zaehler", "titel": "Übung Zählerfehler (freiwillig)", "info": "Auftrag in 00_Kurs/Uebung_zaehlerfehler – Material ist nicht in der ZIP", "status": "offen"},
+      {"id": "g-abfluss", "titel": "Übung Akte Abfluss (freiwillig)", "info": "Auftrag in 00_Kurs/Uebung_akte_abfluss – Material ist nicht in der ZIP", "status": "offen"},
+      {"id": "g-kurschat", "titel": "Kurschat lesen: Was ist zum 2.12. mitzubringen?", "info": "Dozent kündigt es vorher im Kurschat Objektwelt an", "status": "offen"}
+    ]
+  },
+  "personen": [
+    {
+      "id": "marco", "nr": 1, "name": "Marco Schaper", "funktion": "Geschäftsführer", "kuerzel": "MSc",
+      "kontakt": "marco.schaper@signalsteg-messtechnik.de · 05990 5522-11",
+      "seit": "01.04.2007",
+      "profil": "Dipl.-Ing. Elektrotechnik (1990), Jahrgang 1964. Kümmert sich um Bank, Versicherung, Personal; Ansprechpartner für Vertrag, Angebot, Beschwerde. Setzt Ziele und misst andere daran, hält Fristen bei großen Themen für verhandelbar, mag keine Besprechungen.",
+      "lage": "Raumlot will bis 30.11. wissen, ob Signalsteg die Verlängerungsoption zieht. Volker Sachs will keine Zusage ohne Gegenleistung und für Dezember eine Übersicht der Mietkosten. Die Indexerhöhungen seit 2021 wurden nie nachgerechnet. Werkraum könnte Verbündeter sein.",
+      "entscheidung": "Antwort zur Option, Umgang mit den Indexerhöhungen, gemeinsam mit Werkraum oder allein, was die Gesellschafter erfahren, Befugnis und Kalibrierung der Logger, ob wir die Kalibrierlücke selbst nennen, Umgang mit der Frist vom 20.08.",
+      "geheim": "Hat die Indexerhöhungen nie nachgerechnet und nie eine Begründung angefordert; in seiner Ablage gibt es keine Indexmitteilung. Findet Volker Sachs das, fällt es auf ihn zurück.",
+      "aufgaben": [
+        {"id": "marco-agent", "titel": "KI-Agent Marco einrichten", "info": "Projektanweisung prüfen und ins eigene KI-Projekt übernehmen", "entwurf": "agent_marco.md", "status": "pruefen"},
+        {"id": "marco-startfrage", "titel": "Startfrage: Vertrag lesen + Gesamtaussage", "info": "Freiwillige Übung „Startfrage noch einmal“", "entwurf": "startfrage_marco.md", "status": "pruefen"},
+        {"id": "marco-skript", "titel": "Skript „Arbeitsplatz mit KI“ durcharbeiten", "info": "Skript kommt vom Dozenten im Kurschat", "status": "offen"},
+        {"id": "marco-protokoll", "titel": "Lernprotokoll protokoll_Person1 führen", "info": "Eintrag 1: was ich übernehme, was ich bis wann liefere, eine offene Frage", "status": "offen"}
+      ],
+      "kontakte": [
+        {"id": "marco-k-ismail", "wer": "Ismail Herbst (intern)", "worum": "Gesamttabelle der Startfrage abgleichen", "status": "offen"},
+        {"id": "marco-k-werkraum", "wer": "Anna Schramm / Patrick Fehr (Werkraum)", "worum": "Gemeinsames Vorgehen bei den Mieten", "status": "ruhend"},
+        {"id": "marco-k-raumlot", "wer": "Svenja Riedel (Raumlot)", "worum": "Brief zu Option und Index", "status": "ruhend"},
+        {"id": "marco-k-sachs", "wer": "Volker Sachs (über Spielleitung)", "worum": "Mietübersicht für die Gesellschafterversammlung", "status": "ruhend"},
+        {"id": "marco-k-logger", "wer": "Raumlot oder Torwinkel", "worum": "Nachricht zum Kalibrierstand der Logger – oder bewusst keine", "status": "ruhend"}
+      ]
+    },
+    {
+      "id": "petra", "nr": 2, "name": "Petra Sander", "funktion": "Standortleitung Messtechnik", "kuerzel": "PSa",
+      "kontakt": "petra.sander@signalsteg-messtechnik.de · 05990 6003-41",
+      "seit": "15.11.2013",
+      "profil": "Jahrgang 1978, leitet den Standort, grenzt Demonstration und Kundenleistung ab. Fragt nach Messzweck, Gegenstand und benötigtem Ergebnis, bevor sie einen Termin zusagt. Eine eindrucksvolle Demonstration ist für sie noch kein Prüfbericht.",
+      "lage": "Signalsteg prüft die Zählerdaten des Hauses für die Verwaltung. Darin steckt ein großer Fehler bei einem Mieterzähler. Der Hauptwärmemengenzähler läuft seit 2022 ohne gültige Eichung – das trifft Thermenfeld. Ohne Petras Freigabe darf nichts aus der Zählerprüfung nach außen.",
+      "entscheidung": "Korrekturmeldung zum größten Fehler in den Stromablesungen, wie deutlich die abgelaufenen Eichfristen an Thermenfeld gehen, was vor dem 2.12. nach außen darf.",
+      "geheim": "Die „37 Meldungen“ in ihrer Beschwerde von 2020 hat sie nicht aus dem Ticketsystem gezählt, sondern Anrufe und Zurufe mitgezählt. Im Ticketjournal stehen deutlich weniger – Ute wird das finden.",
+      "aufgaben": [
+        {"id": "petra-agent", "titel": "KI-Agent Petra einrichten", "info": "Projektanweisung prüfen und ins eigene KI-Projekt übernehmen", "entwurf": "agent_petra.md", "status": "pruefen"},
+        {"id": "petra-startfrage", "titel": "Startfrage: Auszüge 2020/2021 + Fläche", "info": "Freiwillige Übung „Startfrage noch einmal“", "entwurf": "startfrage_petra.md", "status": "pruefen"},
+        {"id": "petra-skript", "titel": "Skript „Arbeitsplatz mit KI“ durcharbeiten", "info": "Skript kommt vom Dozenten im Kurschat", "status": "offen"},
+        {"id": "petra-protokoll", "titel": "Lernprotokoll protokoll_Person2 führen", "info": "Eintrag 1: was ich übernehme, was ich bis wann liefere, eine offene Frage", "status": "offen"}
+      ],
+      "kontakte": [
+        {"id": "petra-k-ismail", "wer": "Ismail Herbst (intern)", "worum": "Zahlen 2020/2021 für die Gesamttabelle der Startfrage", "status": "offen"},
+        {"id": "petra-k-thermenfeld", "wer": "Hanno Schenk / Detlef Brede (Thermenfeld)", "worum": "Wärmezähler mit Eichfristen, Gegenprüfung", "status": "ruhend"},
+        {"id": "petra-k-korrektur", "wer": "Raumlot und Torwinkel", "worum": "Korrekturmeldung zu den Stromablesungen (erst nach dem Vortrag)", "status": "ruhend"},
+        {"id": "petra-k-konrad", "wer": "Konrad Elster (intern)", "worum": "Wem gehört der fehlerhafte Mieterzähler?", "status": "ruhend"}
+      ]
+    },
+    {
+      "id": "ute", "nr": 3, "name": "Ute Gerstner", "funktion": "Qualitätskoordination (Nachfolge Nele Wendt)", "kuerzel": "UGe",
+      "kontakt": "ute.gerstner@signalsteg-messtechnik.de · 05990 6003-21",
+      "seit": "16.11.2026",
+      "profil": "Staatlich geprüfte Technikerin Elektrotechnik (2003), Jahrgang 1976, 23 Jahre Prüfmittelüberwachung und Kalibrierlabor. Prüft jeden Kalibrierschein auf Gültigkeit und Rückführung, lässt sich nicht hetzen. Teilzeit 36 h, Probezeit 6 Monate. Ansprechperson für Kalibrierung, Prüfmittel, Reklamationen.",
+      "lage": "Kam ohne Übergabe: Nele Wendts Fristenliste, Kalender und zwei abgebrochene Entwürfe (Tür UG Lager, Fassadenfuge Nord) liegen offen, dazu eine unbelegte Frist vom 20.08. Die Logger sind nicht kalibriert, die Prüfmittelliste fehlt. Sie baut die Chronik der Raumklima-Meldungen für Raumlot.",
+      "entscheidung": "Zahl in der Beschwerde von 2020, ob Ismails Messbefund an Raumlot geht, was Konrad mit nicht kalibrierten Geräten zusagen darf, Rückfrage an die Verwaltung, Reklamation der Nachmessung bei Torwinkel, Regel zur Herausgabe an Torwinkel, ob die Frist vom 20.08. belegt ist, Nachricht an Ben Hecht.",
+      "geheim": "Hat 2019 beim früheren Arbeitgeber gemeldet, dass ein Kalibriernachweis nachträglich geändert wurde, und danach die Abteilung gewechselt. Seitdem unterschreibt sie nichts, was sie nicht selbst prüfen konnte.",
+      "aufgaben": [
+        {"id": "ute-agent", "titel": "KI-Agent Ute einrichten", "info": "Projektanweisung prüfen und ins eigene KI-Projekt übernehmen", "entwurf": "agent_ute.md", "status": "pruefen"},
+        {"id": "ute-startfrage", "titel": "Startfrage: Auszug 2022, Dateiname gegen Jahr, USt je Monat", "info": "Freiwillige Übung „Startfrage noch einmal“", "entwurf": "startfrage_ute.md", "status": "pruefen"},
+        {"id": "ute-skript", "titel": "Skript „Arbeitsplatz mit KI“ durcharbeiten", "info": "Skript kommt vom Dozenten im Kurschat", "status": "offen"},
+        {"id": "ute-protokoll", "titel": "Lernprotokoll protokoll_Person3 führen", "info": "Eintrag 1: was ich übernehme, was ich bis wann liefere, eine offene Frage", "status": "offen"},
+        {"id": "ute-website", "titel": "Website online stellen", "info": "Dateien ins Repository hochladen, GitHub Pages einschalten (Anleitung im Chat)", "status": "offen"}
+      ],
+      "kontakte": [
+        {"id": "ute-k-ismail", "wer": "Ismail Herbst (intern)", "worum": "Zahlen 2022 für die Gesamttabelle; später: Meldung TKT-113242 (Tür UG Lager)", "status": "offen"},
+        {"id": "ute-k-benhecht", "wer": "Ben Hecht (Torwinkel)", "worum": "Tür UG Lager und Fassadenfuge Nord", "status": "ruhend"},
+        {"id": "ute-k-vogler", "wer": "Jannik Vogler (Torwinkel)", "worum": "Reklamation der Nachmessung 2025, Freigabe der Antworten", "status": "ruhend"},
+        {"id": "ute-k-raumlot", "wer": "Farid Mertens / Judith Ahlers (Raumlot)", "worum": "Chronik unserer Meldungen, Rückfrage", "status": "ruhend"},
+        {"id": "ute-k-marco", "wer": "Marco Schaper (intern)", "worum": "Liste, was Nele Wendt liegen ließ; Frist 20.08.; Kalibrierung", "status": "ruhend"},
+        {"id": "ute-k-konrad", "wer": "Konrad Elster (intern)", "worum": "Vorgabe: was ohne Kalibrierung zugesagt werden darf", "status": "ruhend"}
+      ]
+    },
+    {
+      "id": "konrad", "nr": 4, "name": "Konrad Elster", "funktion": "Technische Kundenberatung", "kuerzel": "KEl",
+      "kontakt": "konrad.elster@signalsteg-messtechnik.de · 05990 6003-37",
+      "seit": "15.10.2016",
+      "profil": "Jahrgang 1982, 2007–2015 bei Bauteilbogen Vertrieb. Grenzt Anfragen auf eine beantwortbare technische Frage ein, lässt Kunden zuerst Zweck und Genauigkeit beschreiben, trennt Verkaufsdarstellung von nachgewiesenem Messaufbau.",
+      "lage": "Marco misst ihn an zwei neuen Dienstleistungskunden 2026 – bisher keiner. Chance 1: Messung im Forum EG, wo Luftpfad und Thermenfeld über die Ursache der Wärme streiten. Chance 2: Berit Fuchs (Bauteilbogen) fragt privat nach ihrem Stromzähler.",
+      "entscheidung": "Angebot zur Messung im Forum: an wen, zu welchem Preis, kalibriert oder nicht; Antwort an Berit Fuchs; welche Wünsche zum Messplan er annimmt; Nachbewertung der Positionen beider Gruppen.",
+      "geheim": "Weiß als Einziger, dass die Unterverteilung „Technischer Vertrieb“ zu Bauteilbogen gehört, und schuldet Berit Fuchs einen Gefallen. Ohne Dienstleistungskunden bis Jahresende geht seine Stelle zurück in den Geräteverkauf.",
+      "aufgaben": [
+        {"id": "konrad-agent", "titel": "KI-Agent Konrad einrichten", "info": "Projektanweisung prüfen und ins eigene KI-Projekt übernehmen", "entwurf": "agent_konrad.md", "status": "pruefen"},
+        {"id": "konrad-startfrage", "titel": "Startfrage: Auszüge 2023/2024 + Briefing gegen Original", "info": "Freiwillige Übung „Startfrage noch einmal“", "entwurf": "startfrage_konrad.md", "status": "pruefen"},
+        {"id": "konrad-skript", "titel": "Skript „Arbeitsplatz mit KI“ durcharbeiten", "info": "Skript kommt vom Dozenten im Kurschat", "status": "offen"},
+        {"id": "konrad-protokoll", "titel": "Lernprotokoll protokoll_Person4 führen", "info": "Eintrag 1: was ich übernehme, was ich bis wann liefere, eine offene Frage", "status": "offen"}
+      ],
+      "kontakte": [
+        {"id": "konrad-k-ismail", "wer": "Ismail Herbst (intern)", "worum": "Zahlen 2023/2024 für die Gesamttabelle der Startfrage", "status": "offen"},
+        {"id": "konrad-k-forum", "wer": "Henrike Baum (Luftpfad) / Detlef Brede (Thermenfeld)", "worum": "Angebot zur Messung im Forum", "status": "ruhend"},
+        {"id": "konrad-k-fuchs", "wer": "Berit Fuchs (über Spielleitung)", "worum": "Antwort zur Anfrage Stromzähler", "status": "ruhend"},
+        {"id": "konrad-k-chronik", "wer": "Luftpfad Anlagentechnik", "worum": "Abschnitt der Hauschronik", "status": "ruhend"},
+        {"id": "konrad-k-ute", "wer": "Ute Gerstner (intern)", "worum": "Freigabe, was mit nicht kalibrierten Loggern zugesagt wird", "status": "ruhend"}
+      ]
+    },
+    {
+      "id": "ismail", "nr": 5, "name": "Ismail Herbst", "funktion": "Messpraxis und Demonstration", "kuerzel": "IHe",
+      "kontakt": "ismail.herbst@signalsteg-messtechnik.de · 05990 6003-14",
+      "seit": "01.03.2019",
+      "profil": "Jahrgang 1989, betreut technische Plätze und Vorführungen. Notiert Aufbau, Zeit und Einheit direkt bei der Durchführung; gibt keinen Messwert ohne Einheit und Messumstände weiter. Vergleicht bei Abweichungen zuerst die Bedingungen.",
+      "lage": "Seine zwei Klimalogger liefen im Juli 2025 in OG1 West: über 26 °C am Schreibtisch, an heißen Tagen über 30 °C, und vom 06.–09.07. ein Sprung nach oben. Ute wartet auf seinen Messbefund für Raumlot. Er hat Konrad auf das warme Forum aufmerksam gemacht.",
+      "entscheidung": "Messbefund OG1 West für Raumlot mit oder ohne den Ausfall im Juli 2025, Messplan für das Forum, Bewertung der Messberichte, Antwort auf die Fragen von Torwinkel.",
+      "geheim": "Am 06.07.2025 fiel die Kondensatpumpe des Kühlgeräts im Serverraum aus; er hat sie am 09.07. selbst repariert und nicht gemeldet. Der Schreibtisch-Logger war seit März 2025 nicht mehr kalibriert.",
+      "aufgaben": [
+        {"id": "ismail-agent", "titel": "KI-Agent Ismail einrichten", "info": "Projektanweisung prüfen und ins eigene KI-Projekt übernehmen", "entwurf": "agent_ismail.md", "status": "pruefen"},
+        {"id": "ismail-startfrage", "titel": "Startfrage: Auszug 2025, m²-Wert, Tabelle und Folie", "info": "Freiwillige Übung „Startfrage noch einmal“", "entwurf": "startfrage_ismail.md", "status": "pruefen"},
+        {"id": "ismail-skript", "titel": "Skript „Arbeitsplatz mit KI“ durcharbeiten", "info": "Skript kommt vom Dozenten im Kurschat", "status": "offen"},
+        {"id": "ismail-protokoll", "titel": "Lernprotokoll protokoll_Person5 führen", "info": "Eintrag 1: was ich übernehme, was ich bis wann liefere, eine offene Frage", "status": "offen"}
+      ],
+      "kontakte": [
+        {"id": "ismail-k-gruppe", "wer": "Marco, Petra, Ute, Konrad (intern)", "worum": "Zahlen je Jahr für die Gesamttabelle einsammeln", "status": "offen"},
+        {"id": "ismail-k-raumlot", "wer": "Farid Mertens (Raumlot) über Ute", "worum": "Messbefund OG1 West Juli 2025", "status": "ruhend"},
+        {"id": "ismail-k-vogler", "wer": "Jannik Vogler (Torwinkel)", "worum": "Antworten auf seine Fragen, Bewertung der vier Messberichte", "status": "ruhend"},
+        {"id": "ismail-k-ute", "wer": "Ute Gerstner (intern)", "worum": "Meldung Tür UG Lager (TKT-113242): seit wann, wie oft", "status": "ruhend"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "_anleitung": "Hier stehen nur Änderungen am Status. Mögliche Werte: offen, pruefen, erledigt, ruhend. Beispiel: \"ute-startfrage\": {\"status\": \"erledigt\", \"von\": \"Ute\", \"datum\": \"23.11.2026\"}. Die ID steht auf der Website unter jeder Aufgabe. Nach jedem Eintrag ein Komma, außer beim letzten.",
+  "aufgaben": {
+    "g-antritt": {"status": "erledigt", "von": "Gruppe", "datum": "19.11.2026"}
+  }
+}
