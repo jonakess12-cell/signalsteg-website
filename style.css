@@ -157,3 +157,19 @@ details.geheim summary { cursor: pointer; font-weight: 600; }
   .spalten { grid-template-columns: 1fr; }
   .ablauf { grid-template-columns: 1fr 1fr; }
 }
+
+/* Erweiterungen: Prüf-Dateien, Freigabe, Vorbereitet */
+.braucht { font-size: .8rem; background: var(--offen-bg); border-radius: 6px; padding: .4rem .55rem; margin: 0 0 .5rem; color: #5a3a00; }
+.ok { color: var(--erledigt); font-weight: 600; }
+details.quellen { margin-top: .5rem; font-size: .8rem; }
+details.quellen summary { cursor: pointer; color: var(--akzent); font-weight: 600; }
+details.quellen ul { margin: .3rem 0 0; padding-left: 1.1rem; max-height: 220px; overflow: auto; }
+details.quellen li { margin: .15rem 0; word-break: break-word; }
+.leiste + details.quellen, article.doc { margin-bottom: 1rem; }
+details.quellen[open] { background: #fff; border: 1px solid var(--linie); border-radius: 8px; padding: .5rem .8rem; max-width: 900px; }
+.vorbereitet { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .8rem; margin-top: .6rem; }
+.vorbereitet .aufgabe { margin: 0; }
+.ablauf.drei { grid-template-columns: repeat(3, 1fr); }
+.doc img { max-width: 100%; height: auto; border: 1px solid var(--linie); border-radius: 6px; margin: .5rem 0; }
+.schritte ol { margin: 0; padding-left: 1.3rem; } .schritte li { margin: .55rem 0; }
+@media (max-width: 860px) { .ablauf.drei { grid-template-columns: 1fr; } }

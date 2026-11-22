@@ -9,14 +9,15 @@
 |---|---|
 | `index.html`, `app.js`, `style.css` | die Website |
 | `daten.json` | Firma, Partner, Personen, Aufgaben, Kontakte |
-| `status.json` | **hier wird abgehakt** – gilt für alle |
+| `freigabe_<ID>.json` | **Freigaben** – entstehen per Klick auf „Freigeben“ auf der Website |
+| `status.json` | Sonderfälle (z. B. Status von Hand setzen) |
+| `q_*` | Prüf-Dateien (Original-Unterlagen) |
+| `bild_*.png` | Diagramme zu den Entwürfen |
 | `entwurf_*.md` | Entwürfe der KI-Agenten, auf GitHub direkt bearbeitbar |
 
-## Abhaken
-1. `status.json` öffnen → Stift-Symbol (Edit).
-2. In `"aufgaben"` eine Zeile ergänzen, z. B.
-   `"ute-startfrage": {"status": "erledigt", "von": "Ute", "datum": "23.11.2026"},`
-   Werte: `offen`, `pruefen`, `erledigt`, `ruhend`. Die ID steht auf der Website unter jeder Aufgabe.
-3. Unten „Commit changes“. Nach 1–2 Minuten ist die Website aktualisiert.
+## Freigeben
+1. Auf der Website im eigenen Ordner einen Entwurf öffnen und die Stichproben prüfen.
+2. „✔ Freigeben“ klicken – GitHub öffnet eine fertig ausgefüllte Datei `freigabe_<ID>.json`.
+3. Unten „Commit changes“ klicken. Nach 1–2 Minuten steht die Aufgabe unter „Erledigt“.
 
-Achtung: Nach jedem Eintrag ein Komma – außer beim letzten.
+Zurücknehmen: die Datei `freigabe_<ID>.json` löschen.

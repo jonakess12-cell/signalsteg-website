@@ -1,5 +1,5 @@
 /* Signalsteg Messtechnik – Übersichtsseite der Gruppe 7
-   Daten: daten.json (Inhalte) + status.json (gemeinsame Haken, auf GitHub bearbeitet) */
+   Inhalte: daten.json · Freigaben: Dateien freigabe_<ID>.json im Repository (ein Klick + Commit) · status.json für Sonderfälle */
 
 const REPO = 'jonakess12-cell/signalsteg-website';
 const BRANCH = 'main';
@@ -7,19 +7,22 @@ const GH = `https://github.com/${REPO}`;
 const EDIT_STATUS = `${GH}/edit/${BRANCH}/status.json`;
 
 const STATUS = {
-  offen:    { label: 'zu erledigen', kurz: 'offen' },
-  pruefen:  { label: 'zu prüfen',    kurz: 'zu prüfen' },
-  erledigt: { label: 'erledigt',     kurz: 'erledigt' },
-  ruhend:   { label: 'ruht',         kurz: 'ruht' }
+  offen:    { kurz: 'offen' },
+  pruefen:  { kurz: 'zu prüfen' },
+  erledigt: { kurz: 'erledigt' },
+  ruhend:   { kurz: 'ruht' }
 };
 
 let D = null;      // daten.json
-let S = {};        // status.json -> aufgaben
+let S = {};        // Status je ID (aus status.json und freigabe_*.json)
+let FREI = {};     // freigabe-Dateien: id -> {von, datum}
+let apiOk = true;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const chip = st => `<span class="chip ${st}">${STATUS[st]?.kurz ?? st}</span>`;
 const stOf = item => (S[item.id] && S[item.id].status) || item.status || 'offen';
 const person = id => D.personen.find(p => p.id === id);
+const heute = () => new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
 async function laden() {
   const t = Date.now();
@@ -27,9 +30,33 @@ async function laden() {
     fetch(`daten.json?t=${t}`).then(r => r.json()),
     fetch(`status.json?t=${t}`).then(r => r.json()).catch(() => ({}))
   ]);
-  D = d; S = (s && s.aufgaben) || {};
+  D = d; S = { ...((s && s.aufgaben) || {}) };
+  await freigabenLaden();
   document.getElementById('stand').textContent = `Stand der Inhalte: ${D.stand} · nächste Sitzung: ${D.naechsteSitzung}`;
   nav(); route();
+}
+
+/* Freigaben: Dateien freigabe_<id>.json im Repository, gelesen über die öffentliche GitHub-API */
+async function freigabenLaden() {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/?ref=${BRANCH}&t=${Date.now()}`);
+    if (!r.ok) throw new Error(r.status);
+    const files = (await r.json()).filter(f => /^freigabe_.+\.json$/.test(f.name));
+    await Promise.all(files.map(async f => {
+      const id = f.name.replace(/^freigabe_/, '').replace(/\.json$/, '');
+      let info = {};
+      try { info = await fetch(f.download_url + '?t=' + Date.now()).then(x => x.json()); } catch { }
+      FREI[id] = { ...info, datei: f.name };
+      S[id] = { status: info.status || 'erledigt', von: info.von, datum: info.datum };
+    }));
+  } catch { apiOk = false; }
+}
+
+function freigabeLink(a) {
+  const besitzer = a.besitzer === 'gemeinsam' ? (a.wer ? person(a.wer) : null) : person(a.besitzer);
+  const von = besitzer ? besitzer.name.split(' ')[0] : 'Gruppe';
+  const inhalt = JSON.stringify({ status: 'erledigt', von, datum: heute(), aufgabe: a.titel }, null, 2);
+  return `${GH}/new/${BRANCH}?filename=${encodeURIComponent('freigabe_' + a.id + '.json')}&value=${encodeURIComponent(inhalt)}`;
 }
 
 function alleAufgaben() {
@@ -49,7 +76,7 @@ function chipsFuer(list) {
 
 function nav() {
   const h = location.hash;
-  const links = [['#/', 'Übersicht'], ['#/person/gemeinsam', 'Gemeinsam'], ...D.personen.map(p => [`#/person/${p.id}`, p.name.split(' ')[0]])];
+  const links = [['#/', 'Übersicht'], ['#/anleitung', 'So prüfst du'], ['#/person/gemeinsam', 'Gemeinsam'], ...D.personen.map(p => [`#/person/${p.id}`, p.name.split(' ')[0]])];
   document.getElementById('nav').innerHTML = links.map(([href, t]) =>
     `<a href="${href}" class="${(h === href || (href === '#/' && (h === '' || h === '#/'))) ? 'aktiv' : ''}">${t}</a>`).join('');
 }
@@ -60,6 +87,7 @@ function route() {
   const app = document.getElementById('app');
   if (teil === 'person') app.innerHTML = seitePerson(arg);
   else if (teil === 'entwurf') { app.innerHTML = '<p class="laden">Lade Entwurf …</p>'; seiteEntwurf(arg); }
+  else if (teil === 'anleitung') app.innerHTML = seiteAnleitung();
   else app.innerHTML = seiteStart();
   nav(); window.scrollTo(0, 0);
 }
@@ -89,15 +117,14 @@ function seiteStart() {
     </div>
   </section>
 
-  <div class="hinweis warn"><b>Bis zum ${esc(D.naechsteSitzung)}:</b> Es gibt keine Pflichtaufgabe. Die Aufgabenblätter der Figuren und die Lieferungen an andere Firmen ruhen bis auf Weiteres (00_Bis_zum_2_12). Hier steht nur, was gerade gilt.</div>
+  <div class="hinweis warn"><b>Bis zum ${esc(D.naechsteSitzung)}:</b> Keine Pflichtaufgabe. Die Aufgabenblätter der Figuren ruhen – Claude hat sie trotzdem schon vorbearbeitet, sie liegen in jedem Ordner unter „Vorbereitet“.</div>
 
   <div class="hinweis">
-    <b>So arbeiten die KI-Agenten:</b>
-    <div class="ablauf">
-      <div>Claude erarbeitet je Person einen Entwurf aus den Unterlagen.</div>
-      <div>Der Entwurf steht im Ordner der Person unter „zu prüfen“.</div>
-      <div>Die Person prüft ihn an der Quelle (Datei, Seite, Zeile).</div>
-      <div>Abhaken: in <a href="${EDIT_STATUS}" target="_blank" rel="noopener">status.json</a> auf „erledigt“ setzen.</div>
+    <b>Prüfen und freigeben in drei Schritten</b> (<a href="#/anleitung">ausführlich</a>):
+    <div class="ablauf drei">
+      <div>Ordner öffnen → bei „Zu prüfen“ auf <b>Entwurf öffnen</b>.</div>
+      <div>Die Stichproben unten im Entwurf an den <b>Prüf-Dateien</b> nachsehen.</div>
+      <div>Passt alles: <b>Freigeben</b> → auf GitHub <b>Commit changes</b>. Fertig.</div>
     </div>
   </div>
 
@@ -125,20 +152,50 @@ function seiteStart() {
   <div class="karte scroll"><table><tbody>${F.streit.map(([k, v]) => `<tr><td style="width:180px"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join('')}</tbody></table></div>`;
 }
 
-/* ---------- Personen- bzw. Gruppenordner ---------- */
+/* ---------- Anleitung ---------- */
+function seiteAnleitung() {
+  return `
+  <a class="zurueck" href="#/">← Übersicht</a>
+  <h1>So prüfst du und gibst frei</h1>
+  <div class="karte schritte">
+    <ol>
+      <li><b>Deinen Ordner öffnen</b> (oben im Menü auf deinen Namen). In der Spalte <b>„Zu prüfen“</b> und unter <b>„Vorbereitet“</b> liegen die Aufgaben, die Claude schon bearbeitet hat.</li>
+      <li><b>„Entwurf öffnen“</b> klicken. Du siehst das fertige Ergebnis – jede Zahl hat eine Fundstelle (Datei, Seite, Zeile).</li>
+      <li>Oben im Entwurf stehen die <b>Prüf-Dateien</b>. Klick eine an: PDFs öffnen sich im Browser, Excel-Dateien werden heruntergeladen.</li>
+      <li>Ganz unten im Entwurf steht <b>„Für die Prüfung“</b> mit 2–4 Stichproben. Schau genau diese Stellen im Original nach. Das ist die eigentliche Prüfung – sie dauert meist nur wenige Minuten.</li>
+      <li>Stimmt etwas nicht? Auf <b>„Entwurf auf GitHub bearbeiten“</b> klicken, korrigieren, „Commit changes“ – oder Claude im Chat Bescheid geben.</li>
+      <li>Passt alles: <b>„Freigeben“</b> klicken. GitHub öffnet eine fertig ausgefüllte Datei. Du klickst nur unten auf den grünen Knopf <b>„Commit changes“</b> (im Fenster danach noch einmal bestätigen).</li>
+      <li>Website neu laden – die Aufgabe steht jetzt unter <b>„Erledigt“</b>, mit deinem Namen und Datum.</li>
+    </ol>
+  </div>
+  <div class="hinweis"><b>Freigabe zurücknehmen:</b> Im Repository die Datei <code>freigabe_…json</code> öffnen, oben rechts „…“ → „Delete file“ → „Commit changes“.</div>
+  <div class="hinweis warn"><b>Wer darf freigeben?</b> Jede Person, die im Repository Schreibrechte hat (Settings → Collaborators). Ohne Schreibrechte zeigt GitHub statt „Commit changes“ einen Vorschlag („Propose changes“) – dann muss der Besitzer des Repositorys ihn annehmen.</div>`;
+}
+
+/* ---------- Aufgabenkarte ---------- */
+function quellenListe(q, offen = false) {
+  if (!q || !q.length) return '';
+  const name = f => f.replace(/^q_/, '').replace(/_/g, ' ');
+  return `<details class="quellen" ${offen ? 'open' : ''}><summary>Prüf-Dateien (${q.length})</summary><ul>${q.map(f =>
+    `<li><a href="${encodeURI(f)}" target="_blank" rel="noopener">${esc(name(f))}</a></li>`).join('')}</ul></details>`;
+}
+
 function aufgabeKarte(a) {
   const st = stOf(a), s = S[a.id];
   const wer = a.wer ? person(a.wer) : null;
+  const kannFreigeben = st !== 'erledigt' && a.entwurf;
   return `<div class="aufgabe ${st}">
-    ${a.entwurf ? '<div class="agent">● Entwurf vom KI-Agenten</div>' : ''}
+    ${a.entwurf ? `<div class="agent">● ${a.ruht ? 'vorbereitet vom KI-Agenten (Aufgabe ruht)' : 'Entwurf vom KI-Agenten'}</div>` : ''}
     <div class="titel">${esc(a.titel)}</div>
     <div class="info">${esc(a.info || '')}</div>
+    ${st === 'offen' && a.braucht ? `<div class="braucht"><b>Claude braucht:</b> ${esc(a.braucht)}</div>` : ''}
     <div class="zeile">
-      ${a.entwurf ? `<a class="knopf voll" href="#/entwurf/${encodeURIComponent(a.entwurf)}">Entwurf öffnen</a>` : ''}
+      ${a.entwurf ? `<a class="knopf ${kannFreigeben ? '' : 'voll'}" href="#/entwurf/${encodeURIComponent(a.entwurf)}">Entwurf öffnen</a>` : ''}
+      ${kannFreigeben ? `<a class="knopf voll" href="${freigabeLink(a)}" target="_blank" rel="noopener" title="Öffnet GitHub mit fertig ausgefüllter Freigabe – nur noch Commit changes klicken">✔ Freigeben</a>` : ''}
       ${wer ? `<span>federführend: <a href="#/person/${wer.id}">${esc(wer.name)}</a></span>` : ''}
-      ${s && s.von ? `<span>✔ ${esc(s.von)}${s.datum ? ', ' + esc(s.datum) : ''}</span>` : ''}
-      <code title="ID für status.json">${esc(a.id)}</code>
+      ${s && s.von ? `<span class="ok">✔ freigegeben von ${esc(s.von)}${s.datum ? ', ' + esc(s.datum) : ''}</span>` : ''}
     </div>
+    ${quellenListe(a.quellen)}
   </div>`;
 }
 
@@ -146,9 +203,11 @@ function seitePerson(id) {
   const istG = id === 'gemeinsam';
   const p = istG ? null : person(id);
   if (!istG && !p) return `<p>Ordner nicht gefunden. <a href="#/">Zur Übersicht</a></p>`;
-  const aufgaben = istG ? D.gemeinsam.aufgaben : p.aufgaben;
+  const aufgaben = (istG ? D.gemeinsam.aufgaben : p.aufgaben).map(a => ({ ...a, besitzer: istG ? 'gemeinsam' : p.id }));
+  const aktuell = aufgaben.filter(a => !(a.ruht && stOf(a) !== 'erledigt'));
+  const vorbereitet = aufgaben.filter(a => a.ruht && stOf(a) !== 'erledigt');
   const gruppen = { offen: [], pruefen: [], erledigt: [] }, ruhend = [];
-  aufgaben.forEach(a => { const st = stOf(a); (gruppen[st] || ruhend).push(a); });
+  aktuell.forEach(a => { const st = stOf(a); (gruppen[st] || ruhend).push(a); });
   const spalte = (k, titel) => `<div class="spalte"><h3><span>${titel}</span><span class="anz">${gruppen[k].length}</span></h3>
     ${gruppen[k].length ? gruppen[k].map(aufgabeKarte).join('') : '<div class="leer">Nichts hier.</div>'}</div>`;
 
@@ -158,11 +217,11 @@ function seitePerson(id) {
 
   let mehr = '';
   if (!istG) {
-    const kontakte = p.kontakte.map(k => `<div class="k"><div><b>${esc(k.wer)}</b><small>${esc(k.worum)}</small></div><div>${chip(stOf(k))} <code class="id">${esc(k.id)}</code></div></div>`).join('');
+    const kontakte = p.kontakte.map(k => `<div class="k"><div><b>${esc(k.wer)}</b><small>${esc(k.worum)}</small></div><div>${chip(stOf(k))}</div></div>`).join('');
     mehr = `
     <h2>Mit wem Kontakt aufnehmen</h2>
     <div class="karte kontakte">${kontakte}
-      <p style="font-size:.8rem;color:var(--grau);margin:.6rem 0 0">„ruht“ = Lieferung an andere Firmen gilt bis auf Weiteres nicht. Fragen an nicht gespielte Firmen gehen an die Spielleitung im Kurschat Objektwelt.</p>
+      <p style="font-size:.8rem;color:var(--grau);margin:.6rem 0 0">„ruht“ = Lieferung an andere Firmen gilt bis auf Weiteres nicht. Die Nachrichten dafür stehen schon in den vorbereiteten Entwürfen.</p>
     </div>
     <h2>Die Rolle</h2>
     <div class="raster2">
@@ -175,10 +234,14 @@ function seitePerson(id) {
 
   return `
   <a class="zurueck" href="#/">← Übersicht</a>
-  <div class="kopf"><div>${kopf}</div><a class="knopf" href="${EDIT_STATUS}" target="_blank" rel="noopener">Status ändern (status.json)</a></div>
-  <h2>Aufgaben</h2>
+  <div class="kopf"><div>${kopf}</div><a class="knopf" href="#/anleitung">So prüfst du</a></div>
+  ${apiOk ? '' : '<div class="hinweis warn">Freigaben konnten gerade nicht von GitHub gelesen werden (zu viele Abrufe). In einer Stunde neu laden.</div>'}
+  <h2>Aktuelle Aufgaben</h2>
   <div class="spalten">${spalte('offen', 'Zu erledigen')}${spalte('pruefen', 'Zu prüfen')}${spalte('erledigt', 'Erledigt')}</div>
   ${ruhend.length ? `<p style="color:var(--grau);font-size:.85rem">Ruhend: ${ruhend.map(a => esc(a.titel)).join(', ')}</p>` : ''}
+  ${vorbereitet.length ? `<h2>Vorbereitet – Aufgabenblätter, die noch ruhen</h2>
+    <p class="meta">Diese Blätter gelten erst wieder, wenn der Dozent sie freigibt. Claude hat sie schon bearbeitet – du kannst sie jetzt in Ruhe prüfen und freigeben.</p>
+    <div class="vorbereitet">${vorbereitet.map(aufgabeKarte).join('')}</div>` : ''}
   ${mehr}`;
 }
 
@@ -191,31 +254,38 @@ async function seiteEntwurf(datei) {
   try {
     const md = await fetch(`entwurf_${datei}?t=${Date.now()}`).then(r => { if (!r.ok) throw 0; return r.text(); });
     const zur = a ? `#/person/${a.besitzer}` : '#/';
+    const st = a ? stOf(a) : null;
     app.innerHTML = `
       <a class="zurueck" href="${zur}">← zurück zum Ordner</a>
       <div class="leiste">
-        ${a ? chip(stOf(a)) + ` <code class="id">${esc(a.id)}</code>` : ''}
+        ${a ? chip(st) : ''}
+        ${a && st !== 'erledigt' ? `<a class="knopf voll" href="${freigabeLink(a)}" target="_blank" rel="noopener">✔ Freigeben</a>` : ''}
         <a class="knopf" href="${GH}/edit/${BRANCH}/entwurf_${datei}" target="_blank" rel="noopener">Entwurf auf GitHub bearbeiten</a>
-        <a class="knopf voll" href="${EDIT_STATUS}" target="_blank" rel="noopener">Abhaken (status.json)</a>
       </div>
-      <article class="doc">${markdown(md)}</article>`;
+      ${a ? quellenListe(a.quellen, true) : ''}
+      <article class="doc">${markdown(md)}</article>
+      ${a && st !== 'erledigt' ? `<div class="leiste"><a class="knopf voll" href="${freigabeLink(a)}" target="_blank" rel="noopener">✔ Alles geprüft – freigeben</a></div>` : ''}`;
   } catch { app.innerHTML = `<p>Entwurf <code>${esc(datei)}</code> nicht gefunden.</p>`; }
 }
 
-/* Kleiner Markdown-Umwandler: Überschriften, Absätze, Listen, Checklisten, Tabellen, Zitate, fett/kursiv, Code, Links */
+/* Kleiner Markdown-Umwandler: Überschriften, Absätze, Listen, Checklisten, Tabellen, Zitate, Code, Bilder, fett/kursiv, Links */
 function inline(t) {
   return esc(t)
+    .replace(/!\[([^\]]*)\]\(([\w.\-]+\.(?:png|jpg|jpeg|svg))\)/g, '<img src="$2" alt="$1" loading="lazy">')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[\s(])\*([^*]+)\*(?=[\s).,:;!?]|$)/g, '$1<em>$2</em>')
     .replace(/(^|[\s(])_([^_]+)_(?=[\s).,:;!?]|$)/g, '$1<em>$2</em>')
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
 }
 function markdown(src) {
   const z = src.replace(/\r/g, '').split('\n'); let html = '', i = 0;
+  const block = /^(#|\||>|```|\s*([-*]|\d+\.)\s)/;
   while (i < z.length) {
     const l = z[i];
     if (!l.trim()) { i++; continue; }
     let m;
+    if (l.startsWith('```')) { const c = []; i++; while (i < z.length && !z[i].startsWith('```')) c.push(z[i++]); i++; html += `<pre>${esc(c.join('\n'))}</pre>`; continue; }
     if ((m = l.match(/^(#{1,4})\s+(.*)/))) { const n = m[1].length; html += `<h${n}>${inline(m[2])}</h${n}>`; i++; continue; }
     if (/^---+$/.test(l.trim())) { html += '<hr>'; i++; continue; }
     if (l.startsWith('|')) {
@@ -226,7 +296,7 @@ function markdown(src) {
         body.slice(1).map(r => '<tr>' + cells(r).map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
       continue;
     }
-    if (l.startsWith('>')) { const q = []; while (i < z.length && z[i].startsWith('>')) q.push(z[i++].replace(/^>\s?/, '')); html += `<blockquote>${inline(q.join(' '))}</blockquote>`; continue; }
+    if (l.startsWith('>')) { const q = []; while (i < z.length && z[i].startsWith('>')) q.push(z[i++].replace(/^>\s?/, '')); html += `<blockquote>${q.map(inline).join('<br>')}</blockquote>`; continue; }
     if (/^\s*([-*]|\d+\.)\s+/.test(l)) {
       const ord = /^\s*\d+\./.test(l); const items = [];
       while (i < z.length && /^\s*([-*]|\d+\.)\s+/.test(z[i])) items.push(z[i++].replace(/^\s*([-*]|\d+\.)\s+/, ''));
@@ -236,7 +306,7 @@ function markdown(src) {
       }).join('') + `</${ord ? 'ol' : 'ul'}>`;
       continue;
     }
-    const p = []; while (i < z.length && z[i].trim() && !/^(#|\||>|\s*([-*]|\d+\.)\s)/.test(z[i])) p.push(z[i++]);
+    const p = []; while (i < z.length && z[i].trim() && !block.test(z[i])) p.push(z[i++]);
     html += `<p>${p.map(inline).join('<br>')}</p>`;
   }
   return html;
